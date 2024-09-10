@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "178473652070",
+    "project_id": "simple-chat-46df8",
+    "storage_bucket": "simple-chat-46df8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:178473652070:android:e42c8450e5ec2ddb45c2a7",
+        "android_client_info": {
+          "package_name": "com.example.chaty_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCniuvji1MBVbzfXIrBwi-61gZdwIt1jo0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
