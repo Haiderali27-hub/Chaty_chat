@@ -1,9 +1,11 @@
 import 'package:chaty_chat/constants/common_imageviewer.dart';
 import 'package:chaty_chat/constants/images.dart';
 import 'package:chaty_chat/constants/my_text.dart';
+import 'package:chaty_chat/services/auth/auth_services.dart';
 import 'package:chaty_chat/widgets/CustomTextField.dart';
 import 'package:chaty_chat/widgets/horizontal_button.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SignUp extends StatefulWidget {
   final void Function()? onTap;
@@ -22,7 +24,32 @@ class _SignUpState extends State<SignUp> {
     final passwordcontroller = TextEditingController();
     final confirmpasswordcontroller = TextEditingController();
 
-    void SignUp() {}
+    void SignUp() async {
+      if (passwordcontroller.text != confirmpasswordcontroller.text) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Password does not match!!!")),
+        );
+        return;
+      }
+      if (passwordcontroller.text.isEmpty) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Password is empty!!!")),
+        );
+        return;
+      }
+      final authServices = Provider.of<AuthServices>(context, listen: false);
+
+      try {
+        await authServices.signUpWithEmailAndPassword(
+            emailcontroller.text.trim(), passwordcontroller.text.trim());
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+          ),
+        );
+      }
+    }
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 1, 1, 17),
